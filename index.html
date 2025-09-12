@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fazrey Zainal — Robotics & IWSP</title>
+  <meta name="description" content="Portfolio of robotics projects and IWSP work (Unitree Go2, Humanoid demos, RL locomotion).">
+  <style>
+    :root{--bg:#0b0b0f;--card:#12151a;--ink:#e9eef2;--muted:#9cb0bf;--line:#1f2630;--acc:#37e0a1}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    a{color:var(--acc);text-decoration:none}
+    header{position:sticky;top:0;background:rgba(11,11,15,.75);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--line);z-index:10}
+    .nav{max-width:1024px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:10px 16px}
+    .spacer{flex:1}
+    .chip{border:1px solid var(--line);padding:8px 12px;border-radius:999px}
+    main{max-width:1024px;margin:0 auto;padding:24px 16px 64px}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center;margin:18px 0 22px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+    h1{font-size:clamp(28px,4vw,42px);margin:0 0 8px}
+    h2{font-size:22px;margin:0 0 8px}
+    p{margin:0 0 10px;color:var(--muted)}
+    .btn{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:10px;color:var(--ink)}
+    .btn.primary{border-color:transparent;background:linear-gradient(90deg,#35d5ff,#37e0a1);color:#0b0b0f;font-weight:600}
+    .vid{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#0f1217;border:1px solid var(--line)}
+    .vid iframe,.vid video{position:absolute;inset:0;width:100%;height:100%;border:0}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .tag{display:inline-block;font-size:12px;padding:4px 8px;border:1px dashed var(--line);border-radius:999px;color:var(--muted);margin-right:6px}
+    footer{opacity:.75;text-align:center;margin-top:32px}
+    @media (max-width:860px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <strong>Fazrey Zainal</strong>
+      <a class="chip" href="#work">Work</a>
+      <a class="chip" href="#contact">Contact</a>
+      <span class="spacer"></span>
+      <span class="chip" id="lang-pill">EN</span>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="card">
+        <h1>Hi, I’m Fazrey — I build robots people can actually use.</h1>
+        <p>IWSP focus: Unitree Go2 Nav2 SLAM & WebRTC teleop, public-facing humanoid demos, and RL locomotion experiments.</p>
+        <p>
+          <span class="tag">ROS2 / Nav2</span>
+          <span class="tag">SLAM Toolbox</span>
+          <span class="tag">WebRTC</span>
+          <span class="tag">RL</span>
+        </p>
+        <p>
+          <a class="btn primary" id="watchBtn" href="#video">Watch 2-min Montage</a>
+          <a class="btn" href="mailto:YOUR_EMAIL">Email</a>
+          <a class="btn" href="https://github.com/YOUR_GH">GitHub</a>
+        </p>
+      </div>
+
+      <div id="video" class="card">
+        <h2 style="margin-bottom:8px">IWSP Montage</h2>
+        <div class="vid" id="player"></div>
+        <p id="fallback" style="margin-top:10px;display:none">
+          Video coming soon. Check back later or scan the QR on my poster.
+        </p>
+        <p id="dlWrap" style="margin-top:10px;display:none">
+          <a id="dlLink" class="btn" href="#" download>Download MP4 (offline)</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="work" class="card" style="margin-top:18px">
+      <h2>Selected Work (IWSP)</h2>
+      <div class="grid">
+        <article class="card"><h3>Quadruped Nav2 SLAM & WebRTC</h3><p>Autonomous navigation + low-latency teleop for Unitree Go2; tuned costmaps and safety behaviors.</p></article>
+        <article class="card"><h3>Interactive Humanoid (SIT Open House 2025)</h3><p>Robust gestures and prompt loops for noisy, crowded venues.</p></article>
+        <article class="card"><h3>Tic-Tac-Toe Humanoid (RoboSG! 2025)</h3><p>Lightweight vision + move strategy; designed for crowd engagement.</p></article>
+        <article class="card"><h3>Automated Bird Deterrence Concept</h3><p>Humane patrol behavior using quadruped mobility; behavior flow prototype.</p></article>
+        <article class="card"><h3>Humanoid Storeman Concept</h3><p>Shelf retrieval of canned drinks; grasp-and-place pipeline exploration.</p></article>
+        <article class="card"><h3>Friendly Quadruped for Outreach</h3><p>Approachable motion design + public-safe zones.</p></article>
+        <article class="card"><h3>RL Humanoid Locomotion</h3><p>Policy iteration in sim; steps toward hardware deployment.</p></article>
+      </div>
+    </section>
+
+    <section id="contact" class="card" style="margin-top:18px">
+      <h2>Contact</h2>
+      <p>Let’s chat about robots and real-world demos.</p>
+      <p><a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a></p>
+    </section>
+
+    <footer>© <span id="year"></span> Fazrey Zainal</footer>
+  </main>
+
+  <script>
+    // Read URL params (?v=YOUTUBE_ID or ?mp4=FULL_MP4_URL)
+    const qs = new URLSearchParams(location.search);
+    const youTubeId = qs.get('v');
+    const mp4 = qs.get('mp4');
+    const player = document.getElementById('player');
+    const fb = document.getElementById('fallback');
+    const dlWrap = document.getElementById('dlWrap');
+    const dlLink = document.getElementById('dlLink');
+    const watchBtn = document.getElementById('watchBtn');
+
+    if (youTubeId) {
+      const url = `https://www.youtube.com/embed/${encodeURIComponent(youTubeId)}?rel=0&modestbranding=1&playsinline=1`;
+      player.innerHTML = `<iframe src="${url}" title="IWSP Montage" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+      watchBtn.href = `https://youtu.be/${youTubeId}`;
+    } else if (mp4) {
+      const safe = decodeURIComponent(mp4);
+      player.innerHTML = `<video controls playsinline><source src="${safe}" type="video/mp4"></video>`;
+      dlWrap.style.display = 'block';
+      dlLink.href = safe;
+      watchBtn.href = safe;
+    } else {
+      fb.style.display = 'block';
+      watchBtn.href = '#video';
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
