@@ -67,7 +67,12 @@
     <section id="work" class="card" style="margin-top:18px">
       <h2>Selected Work (IWSP)</h2>
       <div class="grid">
-        <article class="card"><h3>Quadruped Nav2 SLAM & WebRTC</h3><p>Autonomous navigation + low-latency teleop for Unitree Go2; tuned costmaps and safety behaviors.</p></article>
+        <article class="card">
+          <a href="https://youtu.be/YOUR_VIDEO_ID" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit">
+            <h3>Quadruped Nav2 SLAM & WebRTC</h3>
+            <p>Autonomous navigation + low-latency teleop for Unitree Go2; tuned costmaps and safety behaviors.</p>
+          </a>
+        </article>
         <article class="card"><h3>Interactive Humanoid (SIT Open House 2025)</h3><p>Robust gestures and prompt loops for noisy, crowded venues.</p></article>
         <article class="card"><h3>Tic-Tac-Toe Humanoid (RoboSG! 2025)</h3><p>Lightweight vision + move strategy; designed for crowd engagement.</p></article>
         <article class="card"><h3>Humanoid Storeman Concept</h3><p>Shelf retrieval of canned drinks; grasp-and-place pipeline exploration.</p></article>
@@ -99,8 +104,8 @@
     const watchBtn = document.getElementById('watchBtn');
 
     if (youTubeId) {
-      const url = `https://www.youtube.com/embed/${encodeURIComponent(youTubeId)}?rel=0&modestbranding=1&playsinline=1`;
-      player.innerHTML = `<iframe src="${url}" title="IWSP Montage" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+      const url = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(youTubeId)}?rel=0&modestbranding=1&playsinline=1`;
+      player.innerHTML = `<iframe loading="lazy" src="${url}" title="IWSP Montage" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
     } else {
       // No default ID yet → show placeholder
       fb.style.display = 'block';
