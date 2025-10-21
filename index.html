@@ -34,8 +34,8 @@
   <header>
     <nav class="nav">
       <strong>Fazrey Zainal</strong>
-      <a class="chip" href="#work">Work</a>
-      <a class="chip" href="#contact">Contact</a>
+      <a class="chip" href="#work">🛠️ Work</a>
+      <a class="chip" href="#contact">📞 Contact</a>
       <span class="spacer"></span>
       <span class="chip" id="lang-pill">EN</span>
     </nav>
@@ -44,18 +44,11 @@
   <main>
     <section class="hero">
       <div class="card">
-        <h1>Hi, I’m Fazrey — I build robots people can actually use.</h1>
-        <p>IWSP focus: Unitree Go2 Nav2 SLAM & WebRTC teleop, public-facing humanoid demos, and RL locomotion experiments.</p>
+        <h1>Hello world, I’m Fazrey </h1>
+        <p>Focused on creating robotic projects and demonstrations while exploring and harnessing frontier AI and robotic technologies.</p>
         <p>
-          <span class="tag">ROS2 / Nav2</span>
-          <span class="tag">SLAM Toolbox</span>
-          <span class="tag">WebRTC</span>
-          <span class="tag">RL</span>
-        </p>
-        <p>
-          <a class="btn primary" id="watchBtn" href="#video">Watch 2-min Montage</a>
-          <a class="btn" href="mailto:YOUR_EMAIL">Email</a>
-          <a class="btn" href="https://github.com/YOUR_GH">GitHub</a>
+          <a class="btn" href="mailto:mdfazrey@gmail.com">📧 Email</a>
+          <a class="btn" href="https://github.com/fazreyzainal">⚙️ GitHub</a>
         </p>
       </div>
 
@@ -77,8 +70,8 @@
         <article class="card"><h3>Quadruped Nav2 SLAM & WebRTC</h3><p>Autonomous navigation + low-latency teleop for Unitree Go2; tuned costmaps and safety behaviors.</p></article>
         <article class="card"><h3>Interactive Humanoid (SIT Open House 2025)</h3><p>Robust gestures and prompt loops for noisy, crowded venues.</p></article>
         <article class="card"><h3>Tic-Tac-Toe Humanoid (RoboSG! 2025)</h3><p>Lightweight vision + move strategy; designed for crowd engagement.</p></article>
-        <article class="card"><h3>Automated Bird Deterrence Concept</h3><p>Humane patrol behavior using quadruped mobility; behavior flow prototype.</p></article>
         <article class="card"><h3>Humanoid Storeman Concept</h3><p>Shelf retrieval of canned drinks; grasp-and-place pipeline exploration.</p></article>
+        <article class="card"><h3>Automated Bird Deterrence Concept</h3><p>Humane patrol behavior using quadruped mobility; behavior flow prototype.</p></article>
         <article class="card"><h3>Friendly Quadruped for Outreach</h3><p>Approachable motion design + public-safe zones.</p></article>
         <article class="card"><h3>RL Humanoid Locomotion</h3><p>Policy iteration in sim; steps toward hardware deployment.</p></article>
       </div>
@@ -86,16 +79,16 @@
 
     <section id="contact" class="card" style="margin-top:18px">
       <h2>Contact</h2>
-      <p>Let’s chat about robots and real-world demos.</p>
-      <p><a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a></p>
+      <p>Get in touch.</p>
+      <p><a href="mailto:mdfazrey@gmail.com">📧 Email</a></p>
     </section>
 
     <footer>© <span id="year"></span> Fazrey Zainal</footer>
   </main>
 
   <script>
-    // === CONFIG: set this to your YouTube Unlisted video ID ===
-    const DEFAULT_YT_ID = "s_xnqxgOh34"; // <-- replace with your ID
+    // === CONFIG: set this to YouTube Unlisted video ID ===
+    const DEFAULT_YT_ID = "s_xnqxgOh34"; // <-- replace with ID
 
     // Read optional URL param (?v=YOUTUBE_ID) so you can override if ever needed
     const qs = new URLSearchParams(location.search);
@@ -108,11 +101,8 @@
     if (youTubeId) {
       const url = `https://www.youtube.com/embed/${encodeURIComponent(youTubeId)}?rel=0&modestbranding=1&playsinline=1`;
       player.innerHTML = `<iframe src="${url}" title="IWSP Montage" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
-      // Make the "Watch 2-min Montage" button go to the video section (and open YT in a new tab if long-press)
-      watchBtn.href = "#video";
-      watchBtn.setAttribute("onclick", "document.getElementById('video').scrollIntoView({behavior:'smooth'});");
     } else {
-      // No default ID yet → show your placeholder
+      // No default ID yet → show placeholder
       fb.style.display = 'block';
       watchBtn.href = "#video";
     }
