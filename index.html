@@ -28,6 +28,16 @@
     .tag{display:inline-block;font-size:12px;padding:4px 8px;border:1px dashed var(--line);border-radius:999px;color:var(--muted);margin-right:6px}
     footer{opacity:.75;text-align:center;margin-top:32px}
     @media (max-width:860px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
+    /* Card thumbnails */
+    .card.link { padding: 0; overflow: hidden; transition: transform .15s ease, box-shadow .15s ease; }
+    .card.link:hover, .card.link:focus-within { transform: translateY(-2px); box-shadow:0 10px 28px rgba(0,0,0,.35) }
+
+    .card .thumb { position: relative; aspect-ratio: 16/9; background:#0f1217; }
+    .card .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .card .thumb::after { content:""; position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,0) 40%);
+    }
+    .card .body { padding: 14px 16px 16px; }
   </style>
 </head>
 <body>
@@ -68,10 +78,19 @@
     <section id="work" class="card" style="margin-top:18px">
       <h2>Selected Work (IWSP)</h2>
       <div class="grid">
-        <article class="card">
-          <a href="https://youtu.be/YOUR_VIDEO_ID" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit">
-            <h3>Quadruped Nav2 SLAM & WebRTC</h3>
-            <p>Autonomous navigation + low-latency teleop for Unitree Go2; tuned costmaps and safety behaviors.</p>
+        <article class="card link">
+          <a href="#" style="display:block; color:inherit; text-decoration:none">
+            <div class="thumb">
+              <picture>
+                <source srcset="/fazrey_portfolio/assets/img/poster_nav.webp" type="image/webp">
+                <img src="/fazrey_portfolio/assets/img/poster_nav.jpg"
+                    alt="Unitree Go2 navigating with SLAM map overlay" loading="lazy">
+              </picture>
+            </div>
+            <div class="body">
+              <h3>Quadruped Nav2 SLAM & WebRTC</h3>
+              <p>Autonomous navigation + low-latency teleop for Unitree Go2; tuned costmaps and safety behaviors.</p>
+            </div>
           </a>
         </article>
         <article class="card"><h3>Interactive Humanoid (SIT Open House 2025)</h3><p>Robust gestures and prompt loops for noisy, crowded venues.</p></article>
