@@ -38,6 +38,21 @@
       background: linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,0) 40%);
     }
     .card .body { padding: 14px 16px 16px; }
+    /* Portrait above the video */
+    .portrait { 
+      margin-bottom: 12px; 
+      border: 1px solid var(--line); 
+      border-radius: 12px; 
+      overflow: hidden; 
+      background:#0f1217;
+      aspect-ratio: 4 / 3;             
+    }
+    .portrait img { 
+      width: 100%; 
+      height: 100%; 
+      display: block; 
+      object-fit: cover;               
+    }
   </style>
 </head>
 <body>
@@ -69,6 +84,9 @@
       </div>
 
       <div id="video" class="card">
+          <div class="portrait">
+            <img src="/fazrey_portfolio/assets/img/me.jpg" alt="" loading="lazy">
+          </div>
         <h2 style="margin-bottom:8px">IWSP Montage</h2>
         <div class="vid" id="player"></div>
         <p id="fallback" style="margin-top:10px;display:none">
