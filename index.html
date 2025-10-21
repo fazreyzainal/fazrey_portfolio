@@ -94,31 +94,30 @@
   </main>
 
   <script>
-    // Read URL params (?v=YOUTUBE_ID or ?mp4=FULL_MP4_URL)
+    // === CONFIG: set this to your YouTube Unlisted video ID ===
+    const DEFAULT_YT_ID = "s_xnqxgOh34"; // <-- replace with your ID
+
+    // Read optional URL param (?v=YOUTUBE_ID) so you can override if ever needed
     const qs = new URLSearchParams(location.search);
-    const youTubeId = qs.get('v');
-    const mp4 = qs.get('mp4');
+    const youTubeId = qs.get('v') || DEFAULT_YT_ID;
+
     const player = document.getElementById('player');
     const fb = document.getElementById('fallback');
-    const dlWrap = document.getElementById('dlWrap');
-    const dlLink = document.getElementById('dlLink');
     const watchBtn = document.getElementById('watchBtn');
 
     if (youTubeId) {
       const url = `https://www.youtube.com/embed/${encodeURIComponent(youTubeId)}?rel=0&modestbranding=1&playsinline=1`;
       player.innerHTML = `<iframe src="${url}" title="IWSP Montage" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
-      watchBtn.href = `https://youtu.be/${youTubeId}`;
-    } else if (mp4) {
-      const safe = decodeURIComponent(mp4);
-      player.innerHTML = `<video controls playsinline><source src="${safe}" type="video/mp4"></video>`;
-      dlWrap.style.display = 'block';
-      dlLink.href = safe;
-      watchBtn.href = safe;
+      // Make the "Watch 2-min Montage" button go to the video section (and open YT in a new tab if long-press)
+      watchBtn.href = "#video";
+      watchBtn.setAttribute("onclick", "document.getElementById('video').scrollIntoView({behavior:'smooth'});");
     } else {
+      // No default ID yet → show your placeholder
       fb.style.display = 'block';
-      watchBtn.href = '#video';
+      watchBtn.href = "#video";
     }
 
+    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
