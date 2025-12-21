@@ -44,7 +44,7 @@
   <main>
     <article class="card">
       <h1>Quadruped (Unitree Go2) Autonomous Navigation</h1>
-      <p>ROS&nbsp;2 Nav2 + SLAM Toolbox indoor autonomy with safe teleop handover, route tuning, and public-safe behaviors.</p>
+      <p>End-to-end proof-of-concept for **wireless indoor autonomy** on Unitree Go2 using ROS 2 Nav2 + SLAM Toolbox, with safe teleop handover and obstacle avoidance. I evaluated multiple Unitree SDKs (official & community) and combined the strengths of the **Unofficial ROS2 SDK** (wireless + navigation) with **CHAMP** (navigation + obstacle avoidance in sim), then validated mapping, planning and connectivity across a real building floor.</p>
 
       <section class="hero" style="margin-top:12px">
         <div class="imgbox">
@@ -53,31 +53,45 @@
         </div>
         <div>
           <h2>What is the project?</h2>
-          <p>Implemented reliable indoor navigation on the Unitree Go2 by bringing up ROS&nbsp;2 Nav2 with SLAM Toolbox, tuning planners/costmaps for corridors and booths, and integrating a low-latency teleop path for safe handover.</p>
+          <p>The goal was to achieve reliable **autonomous navigation** on the Unitree Go2 with a fully wireless workflow. I compared Unitree’s official SDKs against the community **Unofficial ROS2 SDK** to understand navigation, obstacle avoidance, and connectivity trade-offs. I then used **CHAMP** to analyse navigation/obstacle-avoidance in simulation (with a simulated LiDAR and full ROS 2 graph), and finally deployed a merged approach: Unofficial ROS2 SDK for **wireless comms + teleop + navigation**, and a Nav2/SLAM pipeline tuned for **indoor corridors and booth routes**.</p>
         </div>
       </section>
 
       <section>
         <h2>Challenges</h2>
         <ul>
-          <li>Localization drift and re-localization near feature-poor corridors.</li>
-          <li>Planner oscillations at tight turns and near dynamic obstacles.</li>
-          <li>Safe manual⇄auto switching for public demos; watchdogs & soft E-stop.</li>
+            <li><strong>SDK capability gaps:</strong> official SDKs lacked wireless connectivity and full navigation APIs; community SDK had wireless + navigation but no dynamic obstacle avoidance.</li>
+            <li><strong>Sim-to-real consistency:</strong> matching CHAMP sim behaviour (sensing, transforms, ROS 2 graph) to real hardware.</li>
+            <li><strong>Planner stability:</strong> oscillations and poor turning near tight corners; costmap inflation and layers needed careful tuning.</li>
+            <li><strong>Reliable wireless</strong> in a multi-room environment; needed to quantify **WebRTC** round-trip latency at many points of interest.</li>
+            <li><strong>Safety & handover:</strong> clean manual⇄auto switching with watchdogs and an E-stop path for public demos.</li>
         </ul>
       </section>
 
       <section>
         <h2>How I overcame them</h2>
         <ul>
-          <li>Used <em>SLAM Toolbox</em> with loop-closure params; map cleanup + re-localization poses.</li>
-          <li>Tuned costmap inflation, voxel layers, and DWB critics; added approach/stop zones.</li>
-          <li>Added watchdog timers, speed caps, and a mode arbiter for clean teleop/autonomy handover.</li>
+            <li><strong>SDK decision via comparison:</strong> built a feature matrix (wireless, navigation, obstacle avoidance). Selected the <em>Unofficial ROS2 SDK</em> for deployment due to its wireless + navigation support; kept CHAMP to study obstacle-avoidance behaviour and map the ROS 2 graph.</li>
+            <li><strong>Simulation bring-up:</strong> configured CHAMP with a simulated LiDAR; verified topics/TF using RQT graphs for both stationary and moving cases to mirror real-world nodes and transforms.</li>
+            <li><strong>Mapping & planning:</strong> used <em>SLAM Toolbox</em> with loop-closure parameters and map clean-up; tuned local/global costmaps (inflation, voxel/obstacle layers) and DWB critics to remove corner oscillations.</li>
+            <li><strong>Wireless tests (WebRTC):</strong> measured round-trip times across multiple **points of interest** and connection modes (e.g., STA-L/AP/STA-T), then chose the most stable configuration for the floor layout.</li>
+            <li><strong>Safety envelope:</strong> added approach/stop zones and **speed caps**; implemented watchdog timers and a clear mode-arbiter for manual⇄auto handover and soft E-stop.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Results</h2>
+        <ul>
+            <li>Demonstrated **wireless autonomous navigation** on the Go2 with reliable localisation and dynamic obstacle avoidance along a full corridor loop.</li>
+            <li>Produced a floor **map with annotated points of interest** to reason about connectivity and planner behaviour.</li>
+            <li>Validated a merged architecture: Unofficial ROS2 SDK for wireless+navigation, Nav2/SLAM for autonomy, and CHAMP insights to guide obstacle-avoidance tuning.</li>
+            <li>Delivered a working prototype and an engineering write-up summarising SDK trade-offs, ROS 2 graph snapshots, and connectivity measurements.</li>
         </ul>
       </section>
 
       <section>
         <h2>Tech</h2>
-        <p>ROS&nbsp;2 (Nav2, SLAM Toolbox), Python/C++, OpenCV, MQTT/WebRTC, Linux/Jetson, Git/GitHub.</p>
+        <p>ROS 2 (Nav2, SLAM Toolbox), C++/Python, OpenCV, MQTT/WebRTC, CHAMP, Linux/Jetson, Git/GitHub, RQT/TF tools.</p>
       </section>
     </article>
 
