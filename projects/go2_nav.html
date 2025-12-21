@@ -64,7 +64,6 @@
             <li><strong>Sim-to-real consistency:</strong> matching CHAMP sim behaviour (sensing, transforms, ROS 2 graph) to real hardware.</li>
             <li><strong>Planner stability:</strong> oscillations and poor turning near tight corners; costmap inflation and layers needed careful tuning.</li>
             <li><strong>Reliable wireless</strong> in a multi-room environment; needed to quantify **WebRTC** round-trip latency at many points of interest.</li>
-            <li><strong>Safety & handover:</strong> clean manual⇄auto switching with watchdogs and an E-stop path for public demos.</li>
         </ul>
       </section>
 
@@ -75,7 +74,6 @@
             <li><strong>Simulation bring-up:</strong> configured CHAMP with a simulated LiDAR; verified topics/TF using RQT graphs for both stationary and moving cases to mirror real-world nodes and transforms.</li>
             <li><strong>Mapping & planning:</strong> used <em>SLAM Toolbox</em> with loop-closure parameters and map clean-up; tuned local/global costmaps (inflation, voxel/obstacle layers) and DWB critics to remove corner oscillations.</li>
             <li><strong>Wireless tests (WebRTC):</strong> measured round-trip times across multiple **points of interest** and connection modes (e.g., STA-L/AP/STA-T), then chose the most stable configuration for the floor layout.</li>
-            <li><strong>Safety envelope:</strong> added approach/stop zones and **speed caps**; implemented watchdog timers and a clear mode-arbiter for manual⇄auto handover and soft E-stop.</li>
         </ul>
       </section>
 
