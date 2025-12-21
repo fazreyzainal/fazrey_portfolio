@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Quadruped (Unitree Go2) Autonomous Navigation — Fazrey Zainal</title>
+  <meta name="description" content="Unitree Go2 autonomous navigation with ROS 2 Nav2 + SLAM Toolbox, safety layers, and WebRTC teleop." />
+  <style>
+    :root{--bg:#0b0b0f;--card:#12151a;--ink:#e9eef2;--muted:#9cb0bf;--line:#1f2630;--acc:#37e0a1}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    a{color:var(--acc);text-decoration:none}
+    header{position:sticky;top:0;background:rgba(11,11,15,.75);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--line);z-index:10}
+    .nav{max-width:1024px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px 16px}
+    .chip{border:1px solid var(--line);padding:8px 12px;border-radius:999px}
+    main{max-width:1024px;margin:0 auto;padding:24px 16px 64px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+    h1{font-size:clamp(26px,3.8vw,40px);margin:0 0 8px}
+    h2{font-size:20px;margin:18px 0 8px}
+    p{margin:0 0 10px;color:var(--muted)}
+    .btn{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:10px;color:var(--ink)}
+    .btn.primary{border-color:transparent;background:linear-gradient(90deg,#35d5ff,#37e0a1);color:#0b0b0f;font-weight:600}
+    .hero{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+    .imgbox{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#0f1217;aspect-ratio:16/9}
+    .imgbox img{width:100%;height:100%;object-fit:cover;display:block}
+    .vid{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#0f1217;border:1px solid var(--line)}
+    .vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+    ul{margin:8px 0 0 18px;color:var(--muted)}
+    li{margin:6px 0}
+    footer{opacity:.75;text-align:center;margin-top:32px}
+    @media (max-width:860px){.hero{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <strong>Fazrey Zainal</strong>
+      <a class="chip" href="/fazrey_portfolio/">🏠 Home</a>
+      <a class="chip" href="/fazrey_portfolio/resume.html">📄 Resume</a>
+      <a class="chip" href="/fazrey_portfolio/#work">🛠️ Work</a>
+    </nav>
+  </header>
+
+  <main>
+    <article class="card">
+      <h1>Quadruped (Unitree Go2) Autonomous Navigation</h1>
+      <p>ROS&nbsp;2 Nav2 + SLAM Toolbox indoor autonomy with safe teleop handover, route tuning, and public-safe behaviors.</p>
+
+      <section class="hero" style="margin-top:12px">
+        <div class="imgbox">
+          <!-- Replace with your best hero image -->
+          <img src="/fazrey_portfolio/assets/img/poster_nav.jpg" alt="Unitree Go2 navigating with SLAM map overlay">
+        </div>
+        <div>
+          <h2>What is the project?</h2>
+          <p>Implemented reliable indoor navigation on the Unitree Go2 by bringing up ROS&nbsp;2 Nav2 with SLAM Toolbox, tuning planners/costmaps for corridors and booths, and integrating a low-latency teleop path for safe handover.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Challenges</h2>
+        <ul>
+          <li>Localization drift and re-localization near feature-poor corridors.</li>
+          <li>Planner oscillations at tight turns and near dynamic obstacles.</li>
+          <li>Safe manual⇄auto switching for public demos; watchdogs & soft E-stop.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>How I overcame them</h2>
+        <ul>
+          <li>Used <em>SLAM Toolbox</em> with loop-closure params; map cleanup + re-localization poses.</li>
+          <li>Tuned costmap inflation, voxel layers, and DWB critics; added approach/stop zones.</li>
+          <li>Added watchdog timers, speed caps, and a mode arbiter for clean teleop/autonomy handover.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Tech</h2>
+        <p>ROS&nbsp;2 (Nav2, SLAM Toolbox), Python/C++, OpenCV, MQTT/WebRTC, Linux/Jetson, Git/GitHub.</p>
+      </section>
+    </article>
+
+    <footer>🤖 <span id="year"></span> Fazrey Zainal</footer>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
