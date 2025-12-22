@@ -62,17 +62,17 @@
           <li><strong>Perception simplicity:</strong> detect a 3×3 board and human marks reliably without heavy compute.</li>
           <li><strong>Game logic + motion:</strong> guarantee legal robot moves and stable arm trajectories near the board.</li>
           <li><strong>Operator workload:</strong> one person supervising needs obvious status & one-tap recovery.</li>
+          <li><strong>Frequent shutdowns:</strong> inconsistent shutdowns occured while demoing to guests.</li>
         </ul>
       </section>
 
       <section>
         <h2>Solutions</h2>
         <ul>
-          <li><strong>Deterministic FSM:</strong> explicit states with timeouts and failure exits back to <em>Idle</em>; no dead-ends.</li>
-          <li><strong>Prompts & gestures:</strong> concise on-screen/voice prompts plus LED/body cues to show “your turn / my turn”.</li>
-          <li><strong>Lightweight vision:</strong> board ROI with thresholding/contours (or ARUCO corners) to track human marks; debounced sampling between turns.</li>
-          <li><strong>Move planner:</strong> legal-move set + simple win/defense strategy; pre-validated poses for each cell.</li>
+          <li><strong>Prompts & gestures:</strong> concise voice prompts cues to show “your turn / my turn”.</li>
+          <li><strong>Move planner:</strong> legal-move set + simple win/defense strategy with pre-validated poses for each cell.</li>
           <li><strong>Operator panel:</strong> Start/Reset, skip turn, and health readouts (heartbeat, battery, network).</li>
+          <li><strong>Rewiring of connectors:</strong> An unplugged loose wire cause circuit short which prompted the system safety protocol to shutdown, on-the-spot temporary fix to hold connnector in place.</li>
         </ul>
       </section>
 
@@ -82,12 +82,13 @@
           <li>Consistent <strong>game loops</strong> with fast resets; queues kept moving and visitors understood the flow.</li>
           <li>Stable arm motions and safe clearances around the board; no crowd-safety incidents.</li>
           <li>Minimal operator intervention—one person could manage the booth comfortably.</li>
+          <li>Reduce sporadic shutdowns temporarily for the event.</li>
         </ul>
       </section>
 
       <section>
         <h2>Tech</h2>
-        <p>ROS&nbsp;2 (FSM/game node), Python/C++, OpenCV (board/mark detection), pre-tuned arm poses, TTS/Audio prompts, simple web controller, Git/GitHub.</p>
+        <p>ROS&nbsp;2, Python/C++, pre-tuned arm poses, TTS/Audio prompts, simple web controller, Git/GitHub.</p>
       </section>
     </article>
 
