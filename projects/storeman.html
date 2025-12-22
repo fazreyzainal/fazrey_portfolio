@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Humanoid Storeman Concept — Fazrey Zainal</title>
+  <meta name="description" content="Proof-of-concept workflow for a humanoid storeman: eye-in-hand camera mount, dataset capture & YOLO detection for canned drinks, and shelf pickup routine." />
+  <style>
+    :root{--bg:#0b0b0f;--card:#12151a;--ink:#e9eef2;--muted:#9cb0bf;--line:#1f2630;--acc:#37e0a1}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    a{color:var(--acc);text-decoration:none}
+    header{position:sticky;top:0;background:rgba(11,11,15,.75);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--line);z-index:10}
+    .nav{max-width:1024px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px 16px}
+    .chip{border:1px solid var(--line);padding:8px 12px;border-radius:999px}
+    main{max-width:1024px;margin:0 auto;padding:24px 16px 64px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+    h1{font-size:clamp(26px,3.8vw,40px);margin:0 0 8px}
+    h2{font-size:20px;margin:18px 0 8px}
+    p{margin:0 0 10px;color:var(--muted)}
+    .hero{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+    .imgbox{aspect-ratio:4/3;width:100%;max-width:520px;background:#0f1217;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+    .imgbox img{width:100%;height:100%;object-fit:contain;display:block}
+    ul{margin:8px 0 0 18px;color:var(--muted)}
+    li{margin:6px 0}
+    footer{opacity:.75;text-align:center;margin-top:32px}
+    @media (max-width:860px){.hero{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <strong>Fazrey Zainal</strong>
+      <a class="chip" href="/fazrey_portfolio/">🏠 Home</a>
+      <a class="chip" href="/fazrey_portfolio/resume.html">📄 Resume</a>
+      <a class="chip" href="/fazrey_portfolio/#work">🛠️ Work</a>
+    </nav>
+  </header>
+
+  <main>
+    <article class="card">
+      <h1>Humanoid Storeman Concept</h1>
+      <p>Concept workflow for a <strong>warehouse storeman</strong> using a humanoid robot. I focused on the
+        perception and proof-of-concept pickup pipeline: <strong>eye-in-hand camera mount</strong>,
+        dataset capture/annotation, <strong>YOLO object detection</strong> for canned drinks, and a simple
+        pickup routine at the shelf.</p>
+
+      <section class="hero" style="margin-top:12px">
+        <div class="imgbox">
+          <!-- Hero image -->
+          <img src="/fazrey_portfolio/assets/img/poster_storeman.jpg" alt="Humanoid at shelves grasping canned drinks">
+        </div>
+        <div>
+          <h2>What is the project?</h2>
+          <p>Demonstrate how a humanoid could perceive inventory on shelves and perform a
+            repeatable grab-and-place. Given tight timelines and the early state of VLA
+            models, I opted for a faster, reliable <strong>eye-in-hand visual servoing</strong> approach:
+            a camera on the gripper provides direct, real-time views for detection and pose cues.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Challenges</h2>
+        <ul>
+          <li><strong>Vision choice:</strong> VLA pipelines were immature for a quick POC.</li>
+          <li><strong>Stable sensing:</strong> ensure correct FoV, mounting stiffness and cable routing on the hand.</li>
+          <li><strong>Dataset speed:</strong> collect enough varied images of cans from the hand’s POV.</li>
+          <li><strong>Robust detection:</strong> handle different lighting/poses and both left/right hands.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Solutions</h2>
+        <ul>
+          <li><strong>Eye-in-hand mount:</strong> designed in CAD and <strong>3D-printed</strong> for both hands; secure, correct angle, tidy cabling for an Intel Realsense D405.</li>
+          <li><strong>Automated capture:</strong> Python script triggered images through a simulated grab flow; mirrored data to emulate the other hand.</li>
+          <li><strong>Annotation & augmentation:</strong> labelled in Roboflow; applied flip/brightness/rotation/exposure/blur to boost robustness.</li>
+          <li><strong>YOLO pipeline:</strong> trained with Ultralytics YOLO and validated on shelf scenes to confirm accuracy and runtime.</li>
+          <li><strong>Pickup routine:</strong> simple grasp sequence using detected ROI; verified clearances around shelf uprights.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Results</h2>
+        <ul>
+          <li>Achieved <strong>reliable detection</strong> of canned drinks from the hand camera in varied poses.</li>
+          <li>End-to-end demo: request specific drink → detect → approach → <strong>grasp & place in &lt; 1 min</strong>.</li>
+          <li>Provided a practical foundation for future phases (full manipulation control + richer scene understanding/VLA).</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Tech</h2>
+        <p>Intel Realsense D405, 3D CAD &amp; printing, Python (capture scripts), Roboflow (labels/aug),
+          Ultralytics YOLO, ROS2 pick routine, Linux, Git/GitHub.</p>
+      </section>
+    </article>
+
+    <footer>🤖 <span id="year"></span> Fazrey Zainal</footer>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
