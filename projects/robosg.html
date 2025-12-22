@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RoboSG! 2025 – Interactive Tic-Tac-Toe Humanoid — Fazrey Zainal</title>
+  <meta name="description" content="Crowd-facing humanoid that plays Tic-Tac-Toe with visitors. Robust state machine, gesture/voice prompts, vision for board state, and safe operator controls for a noisy event hall.">
+  <style>
+    :root{--bg:#0b0b0f;--card:#12151a;--ink:#e9eef2;--muted:#9cb0bf;--line:#1f2630;--acc:#37e0a1}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    a{color:var(--acc);text-decoration:none}
+    header{position:sticky;top:0;background:rgba(11,11,15,.75);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--line);z-index:10}
+    .nav{max-width:1024px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px 16px}
+    .chip{border:1px solid var(--line);padding:8px 12px;border-radius:999px}
+    main{max-width:1024px;margin:0 auto;padding:24px 16px 64px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+    h1{font-size:clamp(26px,3.8vw,40px);margin:0 0 8px}
+    h2{font-size:20px;margin:18px 0 8px}
+    p{margin:0 0 10px;color:var(--muted)}
+    .btn{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:10px;color:var(--ink)}
+    .btn.primary{border-color:transparent;background:linear-gradient(90deg,#35d5ff,#37e0a1);color:#0b0b0f;font-weight:600}
+    .hero{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+    .imgbox{aspect-ratio:4/3;width:100%;max-width:520px;background:#0f1217;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+    .imgbox img{width:100%;height:100%;object-fit:contain;display:block}
+    ul{margin:8px 0 0 18px;color:var(--muted)}
+    li{margin:6px 0}
+    footer{opacity:.75;text-align:center;margin-top:32px}
+    @media (max-width:860px){.hero{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <strong>Fazrey Zainal</strong>
+      <a class="chip" href="/fazrey_portfolio/">🏠 Home</a>
+      <a class="chip" href="/fazrey_portfolio/resume.html">📄 Resume</a>
+      <a class="chip" href="/fazrey_portfolio/#work">🛠️ Work</a>
+    </nav>
+  </header>
+
+  <main>
+    <article class="card">
+      <h1>RoboSG! 2025 – Interactive Tic-Tac-Toe Playing Humanoid</h1>
+      <p>A public-friendly demo where a humanoid plays <strong>Tic-Tac-Toe</strong> against visitors. I focused on a robust <strong>state machine</strong>, quick operator controls, simple perception of the board, and clear guidance cues so the game stays smooth in a noisy exhibition hall.</p>
+
+      <section class="hero" style="margin-top:12px">
+        <div class="imgbox">
+          <!-- Replace if you prefer a different hero image -->
+          <img src="/fazrey_portfolio/assets/img/poster_robo.jpg" alt="Humanoid at RoboSG! interactive booth">
+        </div>
+        <div>
+          <h2>What is the project?</h2>
+          <p>Let any passerby play a fast game with the robot. The system walks the visitor through <em>Start → Player move → Robot move → Win/Draw → Reset</em>. Priority was on <strong>clarity</strong>, <strong>repeatability</strong>, and <strong>safe interaction</strong> so queues flow and the robot can run for hours.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Challenges</h2>
+        <ul>
+          <li><strong>Event noise & pace:</strong> voice triggers unreliable; visitors rotate quickly; must reset instantly.</li>
+          <li><strong>Perception simplicity:</strong> detect a 3×3 board and human marks reliably without heavy compute.</li>
+          <li><strong>Game logic + motion:</strong> guarantee legal robot moves and stable arm trajectories near the board.</li>
+          <li><strong>Operator workload:</strong> one person supervising needs obvious status & one-tap recovery.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Solutions</h2>
+        <ul>
+          <li><strong>Deterministic FSM:</strong> explicit states with timeouts and failure exits back to <em>Idle</em>; no dead-ends.</li>
+          <li><strong>Prompts & gestures:</strong> concise on-screen/voice prompts plus LED/body cues to show “your turn / my turn”.</li>
+          <li><strong>Lightweight vision:</strong> board ROI with thresholding/contours (or ARUCO corners) to track human marks; debounced sampling between turns.</li>
+          <li><strong>Move planner:</strong> legal-move set + simple win/defense strategy; pre-validated poses for each cell.</li>
+          <li><strong>Operator panel:</strong> Start/Reset, skip turn, and health readouts (heartbeat, battery, network).</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Results</h2>
+        <ul>
+          <li>Consistent <strong>game loops</strong> with fast resets; queues kept moving and visitors understood the flow.</li>
+          <li>Stable arm motions and safe clearances around the board; no crowd-safety incidents.</li>
+          <li>Minimal operator intervention—one person could manage the booth comfortably.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Tech</h2>
+        <p>ROS&nbsp;2 (FSM/game node), Python/C++, OpenCV (board/mark detection), pre-tuned arm poses, TTS/Audio prompts, simple web controller, Git/GitHub.</p>
+      </section>
+    </article>
+
+    <footer>🤖 <span id="year"></span> Fazrey Zainal</footer>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
