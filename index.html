@@ -53,8 +53,53 @@
       display: block; 
       object-fit: cover;               
     }
+
+    .card.expandable { cursor:pointer; position:relative; }
+    .card.expandable:focus { outline:2px solid var(--acc); outline-offset:2px; }
+    .card .summary {
+      grid-column: 1 / -1;
+      overflow:hidden; max-height:0;
+      transition:max-height .35s ease;
+    }
+    .card[aria-expanded="true"] .summary { max-height: 420px; } /* expand height */
+    .card .summary-inner { padding:10px 12px 4px; border-top:1px solid var(--line); }
+    .card .summary-inner ul { margin:8px 0 0 18px; color:var(--muted); }
+    .card .summary-inner li { margin:6px 0; }
+    .card .chev {
+      position:absolute; top:14px; right:14px; opacity:.7;
+      transition:transform .25s ease;
+    }
+    .card[aria-expanded="true"] .chev { transform:rotate(180deg); }
   </style>
+
 </head>
+<script>
+(function(){
+  const cards = document.querySelectorAll('.card.expandable');
+  function collapseAll(except) {
+    cards.forEach(c => { if (c !== except) { c.setAttribute('aria-expanded','false'); }});
+  }
+  cards.forEach(card => {
+    card.setAttribute('tabindex','0');
+    card.setAttribute('role','button');
+    card.setAttribute('aria-expanded','false');
+    const toggle = () => {
+      const isOpen = card.getAttribute('aria-expanded') === 'true';
+      collapseAll(card);
+      card.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+    };
+    card.addEventListener('click', e => {
+      // allow internal links if you add any later
+      if (!(e.target instanceof HTMLAnchorElement)) toggle();
+    });
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+      if (e.key === 'Escape') { card.setAttribute('aria-expanded','false'); }
+    });
+  });
+})();
+</script>
+
 <body>
   <header>
     <nav class="nav">
@@ -92,79 +137,132 @@
     <section id="work" class="card" style="margin-top:18px">
       <h2>Selected Work (IWSP) with Ceredroid/Embotics.ai</h2>
       <div class="grid">
-        <article class="card">
-          <h3 style="margin: 0 0 8px 0;">IWSP Video Montage</h3>
-          <div class="vid" id="player"></div>
-          <p id="fallback" style="margin-top:10px;display:none;color:var(--muted);">
-            Video coming soon.
-          </p>
+        <article class="card expandable">
+          <span class="chev">▾</span>
+          <div class="thumb">
+            <img src="/fazrey_portfolio/assets/img/poster_nav2.jpg" alt="Unitree Go2 navigating with SLAM map overlay">
+          </div>
+          <div class="body">
+            <h3>Quadruped (Unitree Go2) Autonomous Navigation</h3>
+            <p class="muted">ROS 2 Nav2 + SLAM Toolbox • WebRTC wireless</p>
+          </div>
+
+          <div class="summary">
+            <div class="summary-inner">
+              <ul>
+                <li>Built a wireless indoor autonomy PoC using <strong>Nav2 + SLAM Toolbox</strong>; compared official vs community SDKs and merged <em>Unofficial ROS2 SDK</em> (wireless + nav) with <em>CHAMP</em> sim learnings.</li>
+                <li>Mapped corridors, tuned costmaps/DWB, and measured <strong>WebRTC</strong> round-trip latency at points-of-interest for a stable floor-wide config.</li>
+                <li>Delivered a working prototype + write-up (SDK trade-offs, ROS 2 graphs, connectivity). <em>Tech:</em> ROS 2, Nav2, SLAM Toolbox, WebRTC/MQTT, Jetson/Linux.</li>
+              </ul>
+            </div>
+          </div>
         </article>
 
-        <article class="card link">
-          <a href="/fazrey_portfolio/projects/go2_nav.html" style="display:block; color:inherit; text-decoration:none">
-            <div class="thumb">
-              <img src="/fazrey_portfolio/assets/img/poster_nav.jpg" alt="Unitree Go2 navigating with SLAM map overlay" loading="lazy">
+
+        <article class="card expandable">
+          <span class="chev">▾</span>
+          <div class="thumb">
+            <img src="/fazrey_portfolio/assets/img/poster_open.jpg" alt="Open house humanoid booth">
+          </div>
+          <div class="body">
+            <h3>SIT Open House 2025 – Interactive Humanoid Booth</h3>
+            <p class="muted">Modular subsystems • Android UI • 3D printed dispenser</p>
+          </div>
+          <div class="summary">
+            <div class="summary-inner">
+              <ul>
+                <li>Led a <strong>modular demo architecture</strong> under tight timelines; subsystem-first testing for reliability.</li>
+                <li>Designed/printed a <strong>drink dispenser</strong> (sensors/servos) and customized an <strong>Android app</strong> for visitor interaction.</li>
+                <li>Independent validation → integration; refined UX and safety for hands-off, long-running booth sessions.</li>
+              </ul>
             </div>
-            <div class="body">
-              <h3>Quadruped (Unitree Go2) Autonomous Navigation</h3>
-            </div>
-          </a>
+          </div>
         </article>
 
-        <article class="card link">
-          <a href="/fazrey_portfolio/projects/open_house.html" style="display:block; color:inherit; text-decoration:none">
-            <div class="thumb">
-              <img src="/fazrey_portfolio/assets/img/poster_open.jpg" alt="Humanoid greeting visitors at SIT Open House" loading="lazy">
+
+        <article class="card expandable">
+          <span class="chev">▾</span>
+          <div class="thumb">
+            <img src="/fazrey_portfolio/assets/img/poster_robo.jpg" alt="Tic-Tac-Toe humanoid">
+          </div>
+          <div class="body">
+            <h3>RoboSG! 2025 – Interactive Tic-Tac-Toe Humanoid</h3>
+            <p class="muted">Perception • turn logic • booth-ready UX</p>
+          </div>
+          <div class="summary">
+            <div class="summary-inner">
+              <ul>
+                <li>Implemented an <strong>interactive game loop</strong>: board-state perception, turn logic, gestures/speech, clear prompts.</li>
+                <li>Tuned <strong>safe motion primitives</strong> and reset/calibration flows for crowded, variable-lighting venues.</li>
+                <li>Packed a <strong>booth-ready UX</strong> (loopable sessions, E-stop, quick setup notes) for smooth live demos.</li>
+              </ul>
             </div>
-            <div class="body">
-              <h3>SIT Open House 2025 - Interactive Humanoid Robot Booth Concept </h3>
-            </div>
-          </a>
+          </div>
         </article>
 
-        <article class="card link">
-          <a href="/fazrey_portfolio/projects/robosg.html" style="display:block; color:inherit; text-decoration:none">
-            <div class="thumb">
-              <img src="/fazrey_portfolio/assets/img/poster_robo.jpg" alt="Humanoid playing Tic-Tac-Toe with a visitor" loading="lazy">
+
+        <article class="card expandable">
+          <span class="chev">▾</span>
+          <div class="thumb">
+            <img src="/fazrey_portfolio/assets/img/poster_storeman.jpg" alt="Eye-in-hand perception mount">
+          </div>
+          <div class="body">
+            <h3>Humanoid Storeman Concept</h3>
+            <p class="muted">Eye-in-hand perception • YOLO detection • shelf picking</p>
+          </div>
+          <div class="summary">
+            <div class="summary-inner">
+              <ul>
+                <li>Prototyped an <strong>eye-in-hand</strong> setup with Intel RealSense D405; designed & 3D-printed stable mounts.</li>
+                <li>Collected/annotated dataset, augmented in Roboflow, trained <strong>YOLO</strong> to identify graspable canned drinks.</li>
+                <li>Demonstrated end-to-end pick for one SKU; documented roadmap to fuller manipulation & inventory flow.</li>
+              </ul>
             </div>
-            <div class="body">
-              <h3>RoboSG! 2025 - Interactive Tic-Tac-Toe Playing Humanoid</h3>
-            </div>
-          </a>
+          </div>
         </article>
 
-        <article class="card link">
-          <a href="/fazrey_portfolio/projects/storeman.html" style="display:block; color:inherit; text-decoration:none">
-            <div class="thumb">
-              <img src="/fazrey_portfolio/assets/img/poster_storeman.jpg" alt="Humanoid retrieving a canned drink from a shelf" loading="lazy">
+
+        <article class="card expandable">
+          <span class="chev">▾</span>
+          <div class="thumb">
+            <img src="/fazrey_portfolio/assets/img/poster_bd.jpg" alt="Go2 bird deterrence rig">
+          </div>
+          <div class="body">
+            <h3>Automated Bird Deterrence Concept</h3>
+            <p class="muted">Nav2 patrol • ArUco presence • laser cue</p>
+          </div>
+          <div class="summary">
+            <div class="summary-inner">
+              <ul>
+                <li>Built a preliminary <strong>patrol/navigation</strong> workflow on Go2 with simple vision triggers for detected activity.</li>
+                <li>Explored <strong>ArUco/fiducials</strong> for outdoor localization & proof-of-presence logging to mitigate small drift.</li>
+                <li>Prototyped a non-invasive <strong>laser pointing</strong> cue; noted challenges (lighting, detection reliability) for field use.</li>
+              </ul>
             </div>
-            <div class="body">
-              <h3>Humanoid Storeman Concept</h3>
-            </div>
-          </a>
+          </div>
         </article>
 
-        <article class="card link">
-          <a href="/fazrey_portfolio/projects/birddeter.html" style="display:block; color:inherit; text-decoration:none">
-            <div class="thumb">
-              <img src="/fazrey_portfolio/assets/img/poster_bd.jpg" alt="Quadruped patrolling as humane bird deterrence" loading="lazy">
+
+        <article class="card expandable">
+          <span class="chev">▾</span>
+          <div class="thumb">
+            <img src="/fazrey_portfolio/assets/img/poster_rl.jpg" alt="H1 RL & control">
+          </div>
+          <div class="body">
+            <h3>Humanoid Manipulation &amp; Locomotion Exploration</h3>
+            <p class="muted">Sim-to-real RL • gain tuning • safe hardware trials</p>
+          </div>
+          <div class="summary">
+            <div class="summary-inner">
+              <ul>
+                <li>Investigated <strong>sim-to-real</strong> for RL locomotion (domain randomization, Kp/Kd tuning) with staged, safety-first trials.</li>
+                <li>Studied coordinated upper-body motions; performed rapid <strong>corrective maintenance</strong> on dexterous hands.</li>
+                <li>Established a repeatable <em>sim → bench → hardware</em> loop; documented stability wins and RL deployment limits.</li>
+              </ul>
             </div>
-            <div class="body">
-              <h3>Automated Bird Deterrence Concept</h3>
-            </div>
-          </a>
+          </div>
         </article>
 
-        <article class="card link">
-          <a href="/fazrey_portfolio/projects/rl.html" style="display:block; color:inherit; text-decoration:none">
-            <div class="thumb">
-              <img src="/fazrey_portfolio/assets/img/poster_rl.jpg" alt="RL training curves and humanoid walking" loading="lazy">
-            </div>
-            <div class="body">
-              <h3>Humanoid Manipulation and Locomotion Exploration</h3>
-            </div>
-          </a>
-        </article>
       </div>
     </section>
 
