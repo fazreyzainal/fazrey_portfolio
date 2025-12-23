@@ -73,33 +73,6 @@
   </style>
 
 </head>
-<script>
-(function(){
-  const cards = document.querySelectorAll('.card.expandable');
-  function collapseAll(except) {
-    cards.forEach(c => { if (c !== except) { c.setAttribute('aria-expanded','false'); }});
-  }
-  cards.forEach(card => {
-    card.setAttribute('tabindex','0');
-    card.setAttribute('role','button');
-    card.setAttribute('aria-expanded','false');
-    const toggle = () => {
-      const isOpen = card.getAttribute('aria-expanded') === 'true';
-      collapseAll(card);
-      card.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
-    };
-    card.addEventListener('click', e => {
-      // allow internal links if you add any later
-      if (!(e.target instanceof HTMLAnchorElement)) toggle();
-    });
-    card.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
-      if (e.key === 'Escape') { card.setAttribute('aria-expanded','false'); }
-    });
-  });
-})();
-</script>
-
 <body>
   <header>
     <nav class="nav">
@@ -300,6 +273,32 @@
 
     // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script>
+  (function(){
+    const cards = document.querySelectorAll('.card.expandable');
+    function collapseAll(except) {
+      cards.forEach(c => { if (c !== except) { c.setAttribute('aria-expanded','false'); }});
+    }
+    cards.forEach(card => {
+      card.setAttribute('tabindex','0');
+      card.setAttribute('role','button');
+      card.setAttribute('aria-expanded','false');
+      const toggle = () => {
+        const isOpen = card.getAttribute('aria-expanded') === 'true';
+        collapseAll(card);
+        card.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      };
+      card.addEventListener('click', e => {
+        // allow internal links if you add any later
+        if (!(e.target instanceof HTMLAnchorElement)) toggle();
+      });
+      card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+        if (e.key === 'Escape') { card.setAttribute('aria-expanded','false'); }
+      });
+    });
+  })();
   </script>
 </body>
 </html>
