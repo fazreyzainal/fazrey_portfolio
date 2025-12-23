@@ -132,7 +132,7 @@
               <ul>
                 <li>Built a wireless indoor autonomy PoC using <strong>Nav2 + SLAM Toolbox</strong>; compared official vs community SDKs and merged <em>Unofficial ROS2 SDK</em> (wireless + nav) with <em>CHAMP</em> sim learnings.</li>
                 <li>Mapped corridors, tuned costmaps/DWB, and measured <strong>WebRTC</strong> round-trip latency at points-of-interest for a stable floor-wide config.</li>
-                <li>Delivered a working prototype + write-up (SDK trade-offs, ROS 2 graphs, connectivity). <em>Tech:</em> ROS 2, Nav2, SLAM Toolbox, WebRTC/MQTT, Jetson/Linux.</li>
+                <li>Delivered a working prototype. <em>Tech:</em> ROS 2, Nav2, SLAM Toolbox, WebRTC/MQTT, Jetson/Linux.</li>
               </ul>
             </div>
           </div>
@@ -151,9 +151,9 @@
           <div class="summary">
             <div class="summary-inner">
               <ul>
-                <li>Led a <strong>modular demo architecture</strong> under tight timelines; subsystem-first testing for reliability.</li>
-                <li>Designed/printed a <strong>drink dispenser</strong> (sensors/servos) and customized an <strong>Android app</strong> for visitor interaction.</li>
-                <li>Independent validation → integration; refined UX and safety for hands-off, long-running booth sessions.</li>
+                <li><strong>Built an interactive demo architecture</strong> with subsystem-first testing for reliability.</li>
+                <li>Designed a <strong>drink dispenser</strong> (sensors/servos) and customized an <strong>Android app</strong> for visitor interaction.</li>
+                <li>Interacted with public by explaining and educating core technologies involved for the demo.</li>
               </ul>
             </div>
           </div>
@@ -174,7 +174,7 @@
               <ul>
                 <li>Implemented an <strong>interactive game loop</strong>: board-state perception, turn logic, gestures/speech, clear prompts.</li>
                 <li>Tuned <strong>safe motion primitives</strong> and reset/calibration flows for crowded, variable-lighting venues.</li>
-                <li>Packed a <strong>booth-ready UX</strong> (loopable sessions, E-stop, quick setup notes) for smooth live demos.</li>
+                <li>Troubleshoot anomalistic behaviour due to outdoor environment and optimised with temporary solutions.</li>
               </ul>
             </div>
           </div>
@@ -193,9 +193,9 @@
           <div class="summary">
             <div class="summary-inner">
               <ul>
-                <li>Prototyped an <strong>eye-in-hand</strong> setup with Intel RealSense D405; designed & 3D-printed stable mounts.</li>
+                <li>Prototyped an <strong>eye-in-hand</strong> setup with Intel RealSense D405, designed & 3D-printed stable mounts.</li>
                 <li>Collected/annotated dataset, augmented in Roboflow, trained <strong>YOLO</strong> to identify graspable canned drinks.</li>
-                <li>Demonstrated end-to-end pick for one SKU; documented roadmap to fuller manipulation & inventory flow.</li>
+                <li>Demonstrated end-to-end pick for 2 canned drink types simultaneously, showcasing both arms executing tasks independently.</li>
               </ul>
             </div>
           </div>
@@ -214,9 +214,9 @@
           <div class="summary">
             <div class="summary-inner">
               <ul>
-                <li>Built a preliminary <strong>patrol/navigation</strong> workflow on Go2 with simple vision triggers for detected activity.</li>
-                <li>Explored <strong>ArUco/fiducials</strong> for outdoor localization & proof-of-presence logging to mitigate small drift.</li>
-                <li>Prototyped a non-invasive <strong>laser pointing</strong> cue; noted challenges (lighting, detection reliability) for field use.</li>
+                <li>Built a preliminary <strong>patrol/navigation</strong> workflow on Go2 with simple computer vision triggers for detected activity.</li>
+                <li>Explored <strong>ArUco/fiducials</strong> markers for outdoor localization & proof-of-presence logging to mitigate small drift.</li>
+                <li>Prototyped a non-invasive <strong>laser pointing</strong> to prove accurate and precise detection with targeting, noted challenges (lighting, detection reliability) for field use.</li>
               </ul>
             </div>
           </div>
@@ -235,9 +235,9 @@
           <div class="summary">
             <div class="summary-inner">
               <ul>
-                <li>Investigated <strong>sim-to-real</strong> for RL locomotion (domain randomization, Kp/Kd tuning) with staged, safety-first trials.</li>
-                <li>Studied coordinated upper-body motions; performed rapid <strong>corrective maintenance</strong> on dexterous hands.</li>
-                <li>Established a repeatable <em>sim → bench → hardware</em> loop; documented stability wins and RL deployment limits.</li>
+                <li>Investigated <strong>RL frameworks</strong> for RL locomotion (domain randomization, Kp/Kd tuning) with staged, safety-first trials.</li>
+                <li>Studied coordinated upper-body motions effects on lower-body balance.</li>
+                <li>Tackling <em>sim-to-real gap</em> loop, understanding dynamic and domain constraints.</li>
               </ul>
             </div>
           </div>
@@ -257,30 +257,6 @@
     <footer>🤖 <span id="year"></span> Fazrey Zainal</footer>
   </main>
 
-  <script>
-    // === CONFIG: set this to YouTube Unlisted video ID ===
-    const DEFAULT_YT_ID = "1n-9NQEjPjY"; // <-- replace with ID
-
-    // Read optional URL param (?v=YOUTUBE_ID) so you can override if ever needed
-    const qs = new URLSearchParams(location.search);
-    const youTubeId = qs.get('v') || DEFAULT_YT_ID;
-
-    const player = document.getElementById('player');
-    const fb = document.getElementById('fallback');
-    const watchBtn = document.getElementById('watchBtn');
-
-    if (youTubeId) {
-      const url = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(youTubeId)}?rel=0&modestbranding=1&playsinline=1`;
-      player.innerHTML = `<iframe loading="lazy" src="${url}" title="IWSP Montage" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
-    } else {
-      // No default ID yet → show placeholder
-      fb.style.display = 'block';
-      watchBtn.href = "#video";
-    }
-
-    // Footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
   <script>
   (function(){
     const cards = document.querySelectorAll('.card.expandable');
