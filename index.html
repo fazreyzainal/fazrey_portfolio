@@ -61,6 +61,13 @@
       overflow:hidden; max-height:0;
       transition:max-height .35s ease;
     }
+    .card[aria-expanded="true"] .thumb {
+      aspect-ratio: 4/3;                 /* taller area */
+    }
+    .card[aria-expanded="true"] .thumb img {
+      object-fit: contain;                /* no crop; letterbox if needed */
+      background:#0f1217;                 /* clean bars */
+    }
     .card[aria-expanded="true"] .summary { max-height: 420px; } /* expand height */
     .card .summary-inner { padding:10px 12px 4px; border-top:1px solid var(--line); }
     .card .summary-inner ul { margin:8px 0 0 18px; color:var(--muted); }
